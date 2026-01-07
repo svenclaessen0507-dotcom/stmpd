@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 type Service = {
   id: number;
@@ -14,46 +14,64 @@ const services: Service[] = [
     id: 1,
     number: "01",
     title: "Music production",
-    image: "/images/brand.jpg",
+    image: "/images/stmpd.png",
   },
   {
     id: 2,
     number: "02",
     title: "Film & commercials",
-    image: "/images/creative.jpg",
+    image: "/images/stmpd.png",
   },
   {
     id: 3,
     number: "03",
     title: "Dolby Atmos",
-    image: "/images/content.jpg",
+    image: "/images/stmpd.png",
   },
   {
     id: 4,
     number: "04",
     title: "In-house production",
-    image: "/images/digital.jpg",
+    image: "/images/stmpd.png",
   },
   {
     id: 5,
     number: "05",
     title: "Events",
-    image: "/images/campaigns.jpg",
+    image: "/images/stmpd.png",
   },
 ];
 
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const cursorImageRef = useRef<HTMLImageElement | null>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!cursorImageRef.current) return;
+
+    cursorImageRef.current.style.left = `${e.clientX}px`;
+    cursorImageRef.current.style.top = `${e.clientY}px`;
+  };
 
   return (
-    <main className="min-h-screen bg-black px-16 py-32">
+    <main
+      className="min-h-screen bg-black px-16 py-32"
+      onMouseMove={handleMouseMove}
+    >
+      {/* Cursor image */}
+      <img
+        ref={cursorImageRef}
+        src={activeIndex !== null ? services[activeIndex].image : ""}
+        alt=""
+        className={`pointer-events-none fixed left-0 top-0 z-10 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 object-cover transition-opacity duration-200 ${activeIndex !== null ? "opacity-100" : "opacity-0"
+          }`}
+      />
+
       <section className="max-w-5xl">
-        {/* Section title */}
         <h2 className="mb-12 text-sm uppercase tracking-wider text-gray-400">
           What we do
         </h2>
 
-        {/* Services */}
         <div className="flex flex-col gap-6">
           {services.map((service, index) => {
             const isActive = activeIndex === index;
@@ -61,7 +79,8 @@ const Home = () => {
             return (
               <div
                 key={service.id}
-                className="flex cursor-pointer items-center justify-between"
+                className={`flex cursor-pointer items-center justify-between transition-colors ${isActive ? "relative z-20" : "relative z-0"
+                  }`}
                 onMouseEnter={() => setActiveIndex(index)}
                 onMouseLeave={() => setActiveIndex(null)}
               >
