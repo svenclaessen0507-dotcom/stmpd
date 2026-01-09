@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import gsap from "gsap";
+import styles from "./whatwedo.module.css";
 
 type Service = {
   id: number;
@@ -21,7 +22,6 @@ const services: Service[] = [
 const Home = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const cursorImageRef = useRef<HTMLImageElement | null>(null);
-
   const last = useRef({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -61,7 +61,7 @@ const Home = () => {
 
   return (
     <main
-      className="min-h-screen bg-black px-16 py-32"
+      className="min-h-screen bg-black px-20 py-32"
       onMouseMove={handleMouseMove}
     >
       <img
@@ -73,49 +73,33 @@ const Home = () => {
         ${activeIndex !== null ? "opacity-100" : "opacity-0"}`}
       />
 
-      <section className="max-w-5xl">
-        <h2 className="mb-12 text-sm uppercase tracking-wider text-gray-400">
-          What we do
-        </h2>
+      <section className={styles.wrapper}>
+        <h2 className={styles.kicker}>WHAT WE DO</h2>
 
-        <div className="flex flex-col gap-6">
-          {services.map((service, index) => {
-            const isActive = activeIndex === index;
+        {services.map((service, index) => {
+          const isActive = activeIndex === index;
 
-            return (
-              <div
-                key={service.id}
-                className={`flex cursor-pointer items-center justify-between transition-colors ${
-                  isActive ? "relative z-20" : "relative z-0"
-                }`}
-                onMouseEnter={() => showImage(index)}
-                onMouseLeave={hideImage}
-              >
-                <span
-                  className={`text-lg transition-colors duration-200 ${
-                    isActive ? "text-white" : "text-gray-500"
-                  }`}
-                >
-                  {service.number}
-                </span>
+          return (
+            <div
+              key={service.id}
+              className={`${styles.row} ${isActive ? styles.active : ""} ${
+                isActive ? "relative z-20" : "relative z-0"
+              }`}
+              onMouseEnter={() => showImage(index)}
+              onMouseLeave={hideImage}
+            >
+              <span className={styles.number}>{service.number}</span>
 
-                <h3
-                  className={`text-3xl font-medium transition-colors duration-200 ${
-                    isActive ? "text-white" : "text-gray-500"
-                  }`}
-                >
-                  {service.title}
-                  {isActive && <span className="ml-2">→</span>}
-                </h3>
+              <div className="flex items-center">
+                <span className={styles.title}>{service.title}</span>
+                {isActive && <span className={styles.arrow}>→</span>}
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </section>
     </main>
   );
 };
 
 export default Home;
-
-// PoC werkt momenteel

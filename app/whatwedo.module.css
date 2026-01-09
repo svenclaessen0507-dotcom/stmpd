@@ -1,0 +1,50 @@
+.wrapper {
+  max-width: 1200px;
+}
+
+.kicker {
+  font-family: var(--ui-font);
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 80px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 110px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.number {
+  font-family: var(--ui-font);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+  width: 40px;
+}
+
+.title {
+  font-family: var(--title-font);
+  font-size: 100px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.25);
+  transition: color 0.3s ease;
+}
+
+.active .title {
+  color: #fff;
+}
+
+.active .number {
+  color: #fff;
+}
+
+.arrow {
+  margin-left: 20px;
+  font-family: var(--title-font);
+  font-size: 80px;
+}
