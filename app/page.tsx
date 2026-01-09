@@ -117,3 +117,5 @@ const Home = () => {
 };
 
 export default Home;
+
+// PoC werkt momenteel
