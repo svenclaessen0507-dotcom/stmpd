@@ -22,15 +22,41 @@ const Home = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const cursorImageRef = useRef<HTMLImageElement | null>(null);
 
+  const last = useRef({ x: 0, y: 0 });
+
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!cursorImageRef.current) return;
+
+    const dx = e.clientX - last.current.x;
+    const dy = e.clientY - last.current.y;
+
+    last.current = { x: e.clientX, y: e.clientY };
 
     gsap.to(cursorImageRef.current, {
       left: e.clientX,
       top: e.clientY,
-      duration: 0.35,
+      rotationY: dx * 0.15,
+      rotationX: -dy * 0.15,
+      duration: 0.4,
       ease: "power3.out",
+      transformPerspective: 800,
     });
+  };
+
+  const showImage = (index: number) => {
+    setActiveIndex(index);
+
+    if (!cursorImageRef.current) return;
+
+    gsap.fromTo(
+      cursorImageRef.current,
+      { scale: 0.9 },
+      { scale: 1, duration: 0.4, ease: "power3.out" }
+    );
+  };
+
+  const hideImage = () => {
+    setActiveIndex(null);
   };
 
   return (
@@ -38,12 +64,11 @@ const Home = () => {
       className="min-h-screen bg-black px-16 py-32"
       onMouseMove={handleMouseMove}
     >
-      {/* Cursor image */}
       <img
         ref={cursorImageRef}
         src={activeIndex !== null ? services[activeIndex].image : ""}
         alt=""
-        className={`pointer-events-none fixed left-0 top-0 z-10 h-[400px] w-[400px]
+        className={`pointer-events-none fixed left-0 top-0 z-10 h-[420px] w-[420px]
         -translate-x-1/2 -translate-y-1/2 object-cover transition-opacity duration-200
         ${activeIndex !== null ? "opacity-100" : "opacity-0"}`}
       />
@@ -63,8 +88,8 @@ const Home = () => {
                 className={`flex cursor-pointer items-center justify-between transition-colors ${
                   isActive ? "relative z-20" : "relative z-0"
                 }`}
-                onMouseEnter={() => setActiveIndex(index)}
-                onMouseLeave={() => setActiveIndex(null)}
+                onMouseEnter={() => showImage(index)}
+                onMouseLeave={hideImage}
               >
                 <span
                   className={`text-lg transition-colors duration-200 ${
