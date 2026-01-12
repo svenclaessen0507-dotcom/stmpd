@@ -12,10 +12,10 @@ type Service = {
 };
 
 const services: Service[] = [
-  { id: 1, number: "01", title: "Music production", image: "/images/stmpd.png" },
-  { id: 2, number: "02", title: "Film & commercials", image: "/images/stmpd.png" },
-  { id: 3, number: "03", title: "Dolby Atmos", image: "/images/stmpd.png" },
-  { id: 4, number: "04", title: "In-house production", image: "/images/stmpd.png" },
+  { id: 1, number: "01", title: "Music production", image: "/images/stmpd-img-1.png" },
+  { id: 2, number: "02", title: "Film & commercials", image: "/images/stmpd-img-2.png" },
+  { id: 3, number: "03", title: "Dolby Atmos", image: "/images/stmpd-img-3.png" },
+  { id: 4, number: "04", title: "In-house production", image: "/images/stmpd-img-4.png" },
   { id: 5, number: "05", title: "Events", image: "/images/stmpd.png" },
 ];
 
@@ -90,7 +90,7 @@ const Home = () => {
             >
               <span className={styles.number}>{service.number}</span>
 
-              <div className="flex items-center">
+              <div className="flex items-end">
                 <span className={styles.title}>{service.title}</span>
                 {isActive && <span className={styles.arrow}>→</span>}
               </div>

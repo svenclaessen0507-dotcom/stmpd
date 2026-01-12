@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Poppins } from "next/font/google";
+import { Playfair_Display, Poppins } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+/* Heb dit niet werkend gekregen, geen idee hoe dit precies werkt. Daarom heb ik gewoon de styling toegevoegd per element */
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["600"],
+  weight: ["400"],
   variable: "--font-title",
 });
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["500"],
   variable: "--font-ui",
 });
 
@@ -26,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${cormorant.variable} ${poppins.variable}`}>
+      <body className={`${playfair.variable} ${poppins.variable}`}>
         {children}
       </body>
     </html>

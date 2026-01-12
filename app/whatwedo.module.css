@@ -1,50 +1,51 @@
-.wrapper {
-  max-width: 1200px;
-}
-
 .kicker {
-  font-family: var(--ui-font);
-  font-size: 14px;
-  letter-spacing: 0.18em;
-  color: rgba(255, 255, 255, 0.4);
-  margin-bottom: 80px;
+    font-family: "poppins";
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: #656462;
+    margin-bottom: 80px;
 }
 
 .row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 110px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    display: flex;
+    align-items: flex-end;
+    gap: 30px;
+    height: auto;
+    cursor: pointer;
+    margin-bottom: 50px;
 }
 
 .number {
-  font-family: var(--ui-font);
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.4);
-  width: 40px;
+    font-family: "poppins";
+    font-size: 15px;
+    font-weight: 500;
+    color: #656462;
+    width: 40px;
 }
 
 .title {
-  font-family: var(--title-font);
-  font-size: 100px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.25);
-  transition: color 0.3s ease;
+    font-family: "playfair";
+    font-size: 100px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: #656462;
+    transition: color 0.3s ease;
+    white-space: nowrap;
 }
 
 .active .title {
-  color: #fff;
+    color: #ffffff;
 }
 
 .active .number {
-  color: #fff;
+    color: #ffffff;
 }
 
 .arrow {
-  margin-left: 20px;
-  font-family: var(--title-font);
-  font-size: 80px;
+    margin-left: 30px;
+    font-family: var(--title-font);
+    font-size: 80px;
+    line-height: 1;
 }
