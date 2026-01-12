@@ -4,6 +4,8 @@ import React, { useRef, useState } from "react";
 import gsap from "gsap";
 import styles from "./whatwedo.module.css";
 
+// Type-definitie voor een service-item. 
+// Hiermee is duidelijk welke data elke rij nodig heeft.
 type Service = {
   id: number;
   number: string;
@@ -11,6 +13,8 @@ type Service = {
   image: string;
 };
 
+// Dataset met alle services die in de What We Do sectie komen te staan.
+// Door dit los te houden is dit makkelijk uitbreidbaar of te koppelen aan een CMS.
 const services: Service[] = [
   { id: 1, number: "01", title: "Music production", image: "/images/stmpd-img-1.png" },
   { id: 2, number: "02", title: "Film & commercials", image: "/images/stmpd-img-2.png" },
@@ -20,10 +24,21 @@ const services: Service[] = [
 ];
 
 const Home = () => {
+
+// Houdt bij welk item momenteel gehoverd wordt.
+// Dit bepaalt welk item actief is en welke afbeelding wordt getoond.
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  
+  // Referentie naar de afbeelding die de cursor volgt.
   const cursorImageRef = useRef<HTMLImageElement | null>(null);
+
+
+// Slaat de vorige muispositie op zodat we beweging kunnen berekenen
   const last = useRef({ x: 0, y: 0 });
 
+// Wordt uitgevoerd bij elke muisbeweging.
+// Verplaatst en roteert de afbeelding zodat deze de cursor volgt met een 3D-effect.
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!cursorImageRef.current) return;
 
@@ -42,7 +57,9 @@ const Home = () => {
       transformPerspective: 800,
     });
   };
-
+  
+// Wordt aangeroepen wanneer een service wordt gehoverd.
+// Activeerd een item wanneer er overheen wordt gehoverd en speelt een subtiele scale-animatie af op de afbeelding.
   const showImage = (index: number) => {
     setActiveIndex(index);
 
@@ -55,6 +72,8 @@ const Home = () => {
     );
   };
 
+// Wordt aangeroepen wanneer de muis een item verlaat.
+// Verbergt de afbeelding door het actieve item te resetten.
   const hideImage = () => {
     setActiveIndex(null);
   };
@@ -64,6 +83,9 @@ const Home = () => {
       className="min-h-screen bg-black px-20 py-32"
       onMouseMove={handleMouseMove}
     >
+      {/* 
+        De afbeelding die de cursor volgt wordt alleen zichtbaar wanneer een item actief is.
+      */}
       <img
         ref={cursorImageRef}
         src={activeIndex !== null ? services[activeIndex].image : ""}
@@ -76,6 +98,7 @@ const Home = () => {
       <section className={styles.wrapper}>
         <h2 className={styles.kicker}>WHAT WE DO</h2>
 
+        {/* Rendert alle services als hoverbare rijen */}
         {services.map((service, index) => {
           const isActive = activeIndex === index;
 
