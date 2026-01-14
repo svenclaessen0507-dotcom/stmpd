@@ -1,38 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+STMPD – What We Do Hover PoC
 
-## Getting Started
+Deze Proof of Concept toont een interactieve “What We Do” sectie voor STMPD Records.
+Wanneer een gebruiker over een service hovert, verschijnt een bijbehorende afbeelding die de muis volgt met een subtiele 3D-animatie. Het actieve item komt daarbij visueel boven de afbeelding te liggen.
+De PoC is bedoeld om het concept, de interactie en de visuele hiërarchie te valideren voordat dit naar productie wordt doorontwikkeld.
 
-First, run the development server:
+Functionaliteit
+    •	Hover over een service toont een bijbehorende afbeelding
+    •	Afbeelding volgt de cursor met een lichte 3D-rotatie
+    •	Actieve service staat visueel boven de afbeelding
+    •	Animaties verlopen vloeiend via GSAP
 
-```bash
+Technologie
+    •	Next.js (App Router)
+    •	React + TypeScript
+    •	GSAP voor animaties
+    •	CSS Modules voor component-styling
+    •	Tailwind CSS voor layout en utility classes
+
+Project starten
+Installeer dependencies:
+npm install
+Start de development server:
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open daarna in je browser:
+http://localhost:3000
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Structuur
+De PoC staat volledig in de app map en bestaat hoofdzakelijk uit:
+    •	page.tsx → de interactieve What We Do component
+    •	whatwedo.module.css → styling van de sectie
+    •	globals.css → globale layout & achtergrond
+Alle interactieve logica en animaties staan direct in de pagina zodat de PoC makkelijk overdraagbaar is.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Overdraagbaarheid
+De code is voorzien van duidelijke comments per codeblok zodat developers snel begrijpen:
+    •	waar animaties worden aangestuurd
+    •	hoe hover-states werken
+    •	hoe de cursor-afbeelding wordt gepositioneerd
+Hierdoor kan deze PoC direct als basis dienen voor implementatie in een productie-omgeving.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-kaas
+Doel
+Deze PoC is niet bedoeld als eindproduct, maar als valideerbare ontwerp- en interactiebasis voor de STMPD website.
